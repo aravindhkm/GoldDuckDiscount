@@ -27,7 +27,7 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: "0.8.13",
+        version: "0.8.15",
         settings: {
           optimizer: {
             enabled: true,
@@ -79,23 +79,42 @@ module.exports = {
     ],
   },
   networks: {
-    ropsten: {
-      url: process.env.ROPSTEN_URL || "",
+    eth: {
+      url: process.env.ETH_URL || "",
       accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
+    },
+    goerli: {
+      url: process.env.GOERLI_URL || "",
+      accounts:
+        process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
     },
     rinkeby: {
       url: process.env.RINKEBY_URL || "",
       accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+        process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
     },
     testnet: {
       url: process.env.BSC_TESTNET || "",
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts: process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
     },
     mainnet: {
       url: process.env.BSC_MAINNET || "",
-      accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts: process.env.MAINNET_PRIVATE_KEY !== undefined ? [process.env.MAINNET_PRIVATE_KEY] : [],
+    },
+    mumbai: {
+      url: process.env.POLY_MAINNET || "",
+      accounts: process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
+    },
+    matic: {
+      url: process.env.POLY_MAINNET || "",
+      accounts: process.env.TESTNET_PRIVATE_KEY !== undefined ? [process.env.TESTNET_PRIVATE_KEY] : [],
+    },
+    stardust: {
+      url: "https://stardust.metis.io/?owner=588",
+    },
+    andromeda: {
+      url: "https://andromeda.metis.io/?owner=1088",
     },
     hardhat: {
       blockGasLimit: 10000000,
@@ -109,6 +128,28 @@ module.exports = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.BSCSCAN_API_KEY,
+     apiKey: process.env.ETHERSCAN_API_KEY,
+    // apiKey: {
+    //   stardust: process.env.ETHERSCAN_API_KEY,
+    //   andromeda: process.env.ETHERSCAN_API_KEY,
+    // },
+    customChains: [
+      {
+        network: "andromeda",
+        chainId: 1088,
+        urls: {
+          apiURL: "https://andromeda-explorer.metis.io",
+          browserURL: "https://andromeda-explorer.metis.io",
+        },
+      },
+      {
+        network: "stardust",
+        chainId: 588,
+        urls: {
+          apiURL: "https://stardust-explorer.metis.io",
+          browserURL: "https://stardust-explorer.metis.io",
+        },
+      },
+    ],
   },
 };
